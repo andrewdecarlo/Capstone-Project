@@ -1,0 +1,29 @@
+Users:
+*userid (student or faculty id works since it will be unique within WVU system)
+username
+passwordhash
+fname
+lname
+role
+picture
+
+Classes:
+*classid
+classname
+classnumber
+starttime
+endtime
+userid (FK)
+
+Enrollment:
+*enrollmentid
+classid (FK)
+userid (FK)
+
+Attendance:
+*attendanceid
+userid (FK)
+classid (FK)
+date/timestamp
+status(present/absent)
+
