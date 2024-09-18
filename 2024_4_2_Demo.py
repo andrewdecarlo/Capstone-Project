@@ -8,10 +8,11 @@ cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
+
 counter = 0
 
-reference_img = cv2.imread("pictures/faces/test.jpg")  # use your own image here
-#cv2.imshow("reference", reference_img)
+reference_img = cv2.imread("pictures/faces/test.jpg")
+
 face_match = False
 
 
@@ -20,6 +21,7 @@ def check_face(frame):
     cv2.imwrite("current.jpg", frame)
     try:
         if DeepFace.verify(cv2.imread("current.jpg"), reference_img.copy())['verified']:
+
             face_match = True
         else:
             face_match = False
@@ -48,12 +50,15 @@ def find_face(frame):
     cv2.imwrite("current.jpg", frame)
     try:
         facematch = DeepFace.find(img_path=cv2.imread("current.jpg"), db_path="./Pictures/Faces")
-        #print(facematch)
-        if DeepFace.find(cv2.imread("current.jpg"), "./Pictures/Faces"):
-            face_match = True
-            
-        else:
-            face_match = False
+        try:
+            trymatch = DeepFace.find(cv2.imread("current.jpg"), "./Pictures/Faces")
+            if trymatch:
+                face_match = True
+                print(trymatch['identity'])
+            else:
+                face_match = False
+        except:
+            print("Assertion Failed.")
     except ValueError:
         print("ValueError :(")
         face_match = False
