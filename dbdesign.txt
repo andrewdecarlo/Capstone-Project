@@ -13,7 +13,7 @@ classname
 classnumber
 starttime
 endtime
-userid (FK)
+
 
 Enrollment:
 *enrollmentid
@@ -24,6 +24,6 @@ Attendance:
 *attendanceid
 userid (FK)
 classid (FK)
-date/timestamp
+date
 status(present/absent)
 
