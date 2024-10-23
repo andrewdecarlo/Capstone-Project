@@ -5,6 +5,8 @@ from datetime import datetime
 from deepface import DeepFace
 import time
 
+
+
 #INITIALIZE GLOBAL VARIABLES
 counter = 0
 face_match = False
