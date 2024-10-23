@@ -9,8 +9,8 @@ from deepface import DeepFace
 print(os.getcwd())
 cap = cv2.VideoCapture(0, cv2.CAP_V4L)
 
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 
 counter = 0
