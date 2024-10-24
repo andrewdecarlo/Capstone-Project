@@ -53,7 +53,7 @@ def fetch_pictures(user_image_dir):
             userid = row[0]
             image_blob = row[1]
             
-            folder_path = os.path.join(user_image_dir, userid)
+            folder_path = os.path.join(user_image_dir, str(userid))
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
                 
