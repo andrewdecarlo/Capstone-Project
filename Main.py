@@ -171,21 +171,17 @@ def monitor_directory(image_dir):
     try:
         while True:
             images_to_process = []
-            counter =  1
-            print(f'Loop number: {counter}')
             for root, _, files in os.walk(image_dir):
                 for file in files:
                     if file.lower().endswith(('.jpg', '.jpeg', '.png')):
                         image_path = os.path.join(root, file)
                         images_to_process.append(image_path)
-            if not images_to_process:
-                print("No images to process.")
-            else:
-                for image_path in images_to_process:
-                    process_image(image_path)
-                    os.remove(image_path)
-                counter += 1
-                time.sleep(0.25)
+
+            for image_path in images_to_process:
+                process_image(image_path)
+                os.remove(image_path)
+            counter += 1
+            time.sleep(0.25)
     
     except Exception as e:
         print(f"An error occurred in monitor_directory: {e}")
