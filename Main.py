@@ -30,7 +30,7 @@ def detect_and_fix(img_path, img_name):
       print("Unable to load/write Image : {} . Image might be destroyed".format(img_path) )
 
 #This function fetches user pictures from the database and stores them locally
-def fetch_pictures():
+def fetch_pictures(user_image_dir):
     try:
         connection = pymysql.connect(
             host = "capstone.cd0eiocok9m6.us-east-1.rds.amazonaws.com",
@@ -45,12 +45,15 @@ def fetch_pictures():
             cursor.execute(sql)
             results = cursor.fetchall()
         
+        if not os.path.exists(user_image_dir):
+            os.makedirs(user_image_dir)
+
         counter = 1
         for row in results:
             userid = row[0]
             image_blob = row[1]
             
-            folder_path = f'/home/ubuntu/user_images/{userid}'
+            folder_path = os.path.join(user_image_dir, userid)
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
                 
@@ -180,7 +183,7 @@ def monitor_directory(image_dir):
             for image_path in images_to_process:
                 process_image(image_path)
                 os.remove(image_path)
-                
+
             time.sleep(0.25)
     
     except Exception as e:
@@ -196,6 +199,7 @@ def process_image(image_path):
 def main():
     image_dir = '/home/ubuntu/SATS_images'
     print("Main method")
+    fetch_pictures("/home/ubuntu/user_images")
     monitor_directory(image_dir)
 
 main()

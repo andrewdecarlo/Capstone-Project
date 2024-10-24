@@ -1,5 +1,6 @@
 import os
 import signal
+import sys
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -27,4 +28,8 @@ def upload_file():
     return f"File uploaded to {file_path}", 200
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    try:
+        print("Starting flask server on port 5000...")
+        app.run(host='0.0.0.0', port=5000, debug=True)
+    except KeyboardInterrupt:
+        print("Flask server stopped by user.")
