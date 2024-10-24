@@ -32,4 +32,4 @@ except subprocess.CalledProcessError as e:
     print(e)
 """
 
-os.remove(image_path)
+#os.remove(image_path)

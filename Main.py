@@ -5,7 +5,7 @@ from datetime import datetime
 from deepface import DeepFace
 import time
 
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 #INITIALIZE GLOBAL VARIABLES
 counter = 0
@@ -144,20 +144,20 @@ def mark_attendance(userid, classid):
             print("DB connection closed")
 
 #This function checks the current image against attendance group images for a positive match and marks attendance if a match occurs
-def verify_face(frame):
+def verify_face(image_path):
     global face_match
     data_dir = "/home/ubuntu/user_images"
     
-    current = cv2.imwrite("/home/ubuntu/current.jpeg", frame)
+    #current = cv2.imwrite("/home/ubuntu/current.jpeg", frame)
     
     for directory in os.listdir(data_dir):
         for file in os.listdir(os.path.join(data_dir, directory)):
-            filepath = os.path.join(data_dir, os.path.join(directory, file))
+            filepath = os.path.join(data_dir, os.path.join(directory, file)) #path of image from database
             userid = directory
             if file.endswith((".jpg", ".jpeg", ".png")):
                 try:
                     print(filepath)
-                    result = DeepFace.verify(current, filepath, enforce_detection=False)
+                    result = DeepFace.verify(image_path, filepath, enforce_detection=False)
                     if result['verified']:
                         face_match = True
                         print(f'current userid: {userid}')
