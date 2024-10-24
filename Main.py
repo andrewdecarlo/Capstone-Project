@@ -171,7 +171,8 @@ def monitor_directory(image_dir):
     try:
         while True:
             images_to_process = []
-
+            counter =  1
+            print(f'Loop number: {counter}')
             for root, _, files in os.walk(image_dir):
                 for file in files:
                     if file.lower().endswith(('.jpg', '.jpeg', '.png')):
@@ -181,7 +182,7 @@ def monitor_directory(image_dir):
             for image_path in images_to_process:
                 process_image(image_path)
                 os.remove(image_path)
-
+            counter += 1
             time.sleep(0.25)
     
     except Exception as e:
