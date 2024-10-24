@@ -168,18 +168,24 @@ def verify_face(image_path):
                     print("face verification exception")
 
 def monitor_directory(image_dir):
-    while True:
-        images_to_process = []
+    try:
+        while True:
+            images_to_process = []
 
-        for root, _, files in os.walk(image_dir):
-            for file in files:
-                if file.lower().endswith(('.jpg', '.jpeg', '.png')):
-                    image_path = os.path.join(root, file)
-                    images_to_process.append(image_path)
+            for root, _, files in os.walk(image_dir):
+                for file in files:
+                    if file.lower().endswith(('.jpg', '.jpeg', '.png')):
+                        image_path = os.path.join(root, file)
+                        images_to_process.append(image_path)
 
-        for image_path in images_to_process:
-            process_image(image_path)
-            os.remove(image_path)
+            for image_path in images_to_process:
+                process_image(image_path)
+                os.remove(image_path)
+
+            time.sleep(0.25)
+    
+    except Exception as e:
+        print(f"An error occurred in monitor_directory: {e}")
 
 def process_image(image_path):
     try:
