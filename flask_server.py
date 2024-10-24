@@ -1,10 +1,18 @@
 import os
+import signal
 from flask import Flask, request
 
 app = Flask(__name__)
 UPLOAD_FOLDER = '/home/ubuntu/SATS_images'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def signal_handler(sig, frame):
+    print("Received termination signal. Shutting down...")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
