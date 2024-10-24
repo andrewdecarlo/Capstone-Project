@@ -190,10 +190,12 @@ def monitor_directory(image_dir):
         print(f"An error occurred in monitor_directory: {e}")
 
 def process_image(image_path):
+    print("processing image...")
     try:
         verify_face(image_path)
     except Exception as e:
         print(f'Error processing image {image_path}: {e}')
+    print("image processed...")
 
 #MAIN PROGRAM BODY
 def main():
