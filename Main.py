@@ -180,7 +180,7 @@ def monitor_directory(image_dir):
             for image_path in images_to_process:
                 process_image(image_path)
                 os.remove(image_path)
-            counter += 1
+                
             time.sleep(0.25)
     
     except Exception as e:
