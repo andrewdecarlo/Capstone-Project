@@ -201,3 +201,5 @@ def main():
     image_dir = '/home/ubuntu/SATS_images'
     print("Main method")
     monitor_directory(image_dir)
+
+main()
