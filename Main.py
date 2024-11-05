@@ -5,8 +5,6 @@ from datetime import datetime
 from deepface import DeepFace
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 #INITIALIZE GLOBAL VARIABLES
 counter = 0
 face_match = False
