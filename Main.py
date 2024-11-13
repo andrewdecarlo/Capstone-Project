@@ -165,9 +165,9 @@ def verify_face(image_path):
                         check_attendance(userid)
                         print(result['verified'])
                 except ValueError:
-                    pass
                     face_match = False
                     print("face verification exception")
+                    pass
                     
 
 def monitor_directory(image_dir):
@@ -187,8 +187,8 @@ def monitor_directory(image_dir):
             time.sleep(0.25)
     
     except Exception as e:
-        pass
         print(f"An error occurred in monitor_directory: {e}")
+        pass
         
 
 def process_image(image_path):
