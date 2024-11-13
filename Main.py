@@ -190,9 +190,14 @@ def monitor_directory(image_dir):
 def process_image(image_path):
     print("processing image...")
     try:
-        verify_face(image_path)
-    except Exception as e:
-        print(f'Error processing image {image_path}: {e}')
+        DeepFace.detectFace(image_path, detector_backend='opencv')
+        print("face detected.")
+        try:
+            verify_face(image_path)
+        except Exception as e:
+            print(f'Error processing image {image_path}: {e}')
+    except:
+        print("no face detected.")
     print("image processed...")
 
 #MAIN PROGRAM BODY
