@@ -99,7 +99,7 @@ def check_attendance(userid):
         print(results)
         if not results:
             print(f'{userid} not marked')
-            mark_attendance(userid, 481)
+            mark_attendance(userid, 5)
             
     except pymysql.MySQLError as e:
         print(f"Error connecting to database: {e}")
