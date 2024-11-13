@@ -167,6 +167,7 @@ def verify_face(image_path):
                 except ValueError:
                     face_match = False
                     print("face verification exception")
+                    pass
 
 def monitor_directory(image_dir):
     try:
@@ -186,6 +187,7 @@ def monitor_directory(image_dir):
     
     except Exception as e:
         print(f"An error occurred in monitor_directory: {e}")
+        pass
 
 def process_image(image_path):
     print("processing image...")
