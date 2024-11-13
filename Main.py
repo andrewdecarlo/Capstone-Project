@@ -39,7 +39,7 @@ def fetch_pictures(user_image_dir):
             )
         
         with connection.cursor() as cursor:
-            sql = "SELECT userid, picture FROM Pictures"
+            sql = "SELECT p.userid, p.picture FROM Pictures p JOIN Enrollment e ON p.userid = e.userid JOIN Classes c ON e.classid = c.classid WHERE c.classid = 5"
             cursor.execute(sql)
             results = cursor.fetchall()
         
